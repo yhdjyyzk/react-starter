@@ -15,7 +15,7 @@ export default class Routers extends Component {
             <BrowserRouter>
                 <div><Link to='/page0'>page0</Link></div>
                 <div><Link to='/page1'>page1</Link></div>
-                <div><Link to='/page2'>pag`e2</Link></div>
+                <div><Link to='/page2'>page2</Link></div>
 
                 <Switch>
                     <Route exact path='/page0' component={Page0} />
