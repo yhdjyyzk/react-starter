@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actionTypes from '../../store/page0/actionTypes'
+import { getBlogs } from '../../store/page0/actions'
 
 class Page0 extends Component {
     constructor(props) {
         super(props)
 
         this.onClick = this.onClick.bind(this)
+    }
+
+    componentWillMount() {
+        this.props.getBlogs()
     }
 
     render() {
@@ -33,6 +38,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 type: actionTypes.ADD,
                 data: 1 //ownProps.count + 1
             })
+        },
+        getBlogs() {
+            dispatch(getBlogs(10, 10))
         }
     }
 }

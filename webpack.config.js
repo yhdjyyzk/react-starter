@@ -77,7 +77,10 @@ module.exports = {
         port: 8888,
         historyApiFallback: true, // react router要配置
         proxy: {
-            '/api': ''
+            '/api': '',
+            '/blog': {
+                target: 'http://localhost:7001'
+            }
         }
     }
 }

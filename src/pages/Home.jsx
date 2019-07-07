@@ -4,11 +4,20 @@ import { Link } from 'react-router-dom'
 import ToDo from '../components/ToDo'
 import Routers from '../router/Routers'
 import page0Reducer from '../store/page0/reducers'
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
-// import {composeWithDevTools} from 'redux-devtools-extension'
+import thunk from 'redux-thunk'
+// import { composeWithDevTools } from 'redux-devtools-extension'
 
-const store = createStore(page0Reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+// const store = createStore(page0Reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
+
+const enhancer = composeEnhancers(
+    applyMiddleware(thunk)
+);
+const store = createStore(page0Reducer, enhancer)
 
 export default class Home extends Component {
     constructor(props) {
