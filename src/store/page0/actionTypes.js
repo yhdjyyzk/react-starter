@@ -1,7 +1,9 @@
 const ADD = 'add'
 const SUB = 'sub'
+const UPDATE_BLOGS = 'update_blogs'
 
 export default {
     ADD,
-    SUB
+    SUB,
+    UPDATE_BLOGS
 }

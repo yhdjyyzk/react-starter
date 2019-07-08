@@ -8,6 +8,9 @@ export default function reducer(state = page0State, action) {
             return {...state}
         case actionTypes.SUB:
             break;
+        case actionTypes.UPDATE_BLOGS:
+            state.blogs = action.payload
+            return {...state}
         default:
             return page0State
     }

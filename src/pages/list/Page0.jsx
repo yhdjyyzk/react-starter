@@ -16,7 +16,22 @@ class Page0 extends Component {
 
     render() {
         return (
-            <div onClick={this.onClick}>page0: ===> {this.props.count}</div>
+            <>
+                {
+                    this.props.blogs.map(item => {
+                        return (
+                            <ul key={item.id}>
+                                <li key="1">{item.id}</li>
+                                <li key="2" dangerouslySetInnerHTML={{ __html: item.title }}></li>
+                                <li key="3" dangerouslySetInnerHTML={{ __html: item.description }}></li>
+                                <li key="4" dangerouslySetInnerHTML={{ __html: item.content }}></li>
+                                <li key="5">{item.labels}</li>
+                            </ul>
+                        )
+                    })
+                }
+                <div onClick={this.onClick}>page0: ===> {this.props.count}</div>
+            </>
         )
     }
 
@@ -27,7 +42,8 @@ class Page0 extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        count: state.count
+        count: state.count,
+        blogs: state.blogs
     }
 }
 

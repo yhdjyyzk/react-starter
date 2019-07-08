@@ -1,16 +1,19 @@
 import axios from 'axios'
+import actionTypes from './actionTypes'
 
-const getBlogs = function(offset, limit) {
+const getBlogs = function (offset, limit) {
     return async dispatch => {
-        console.log("loading..................")
         const res = await axios.get('/blog', {
             params: {
                 offset,
                 limit
             }
         })
-        console.log(res.data)
-        console.log("loaded !!!!!!!!!!!!!!!!!!")
+
+        dispatch({
+            type: actionTypes.UPDATE_BLOGS,
+            payload: res.data
+        })
     }
 }
 
