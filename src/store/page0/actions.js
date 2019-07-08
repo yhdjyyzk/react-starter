@@ -8,15 +8,15 @@ const getBlogs = function (offset, limit) {
                 offset,
                 limit
             }
-        })
+        });
 
         dispatch({
             type: actionTypes.UPDATE_BLOGS,
             payload: res.data
-        })
+        });
     }
 }
 
 export {
     getBlogs
-}
+};

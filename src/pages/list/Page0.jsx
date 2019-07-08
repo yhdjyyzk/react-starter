@@ -1,17 +1,16 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import actionTypes from '../../store/page0/actionTypes'
-import { getBlogs } from '../../store/page0/actions'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getBlogs } from '../../store/page0/actions';
+import actionTypes from '../../store/page0/actionTypes';
 
 class Page0 extends Component {
     constructor(props) {
-        super(props)
-
-        this.onClick = this.onClick.bind(this)
+        super(props);
+        this.onClick = this.onClick.bind(this);
     }
 
     componentWillMount() {
-        this.props.getBlogs()
+        this.props.getBlogs();
     }
 
     render() {
@@ -32,19 +31,19 @@ class Page0 extends Component {
                 }
                 <div onClick={this.onClick}>page0: ===> {this.props.count}</div>
             </>
-        )
+        );
     }
 
     onClick() {
-        this.props.add()
+        this.props.add();
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        count: state.count,
-        blogs: state.blogs
-    }
+        count: state.page0Reducer.count,
+        blogs: state.page0Reducer.blogs
+    };
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -53,12 +52,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch({
                 type: actionTypes.ADD,
                 data: 1 //ownProps.count + 1
-            })
+            });
         },
         getBlogs() {
-            dispatch(getBlogs(10, 10))
+            dispatch(getBlogs(10, 10));
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Page0)
+export default connect(mapStateToProps, mapDispatchToProps)(Page0);
