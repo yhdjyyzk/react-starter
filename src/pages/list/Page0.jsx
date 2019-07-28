@@ -10,7 +10,7 @@ class Page0 extends Component {
     }
 
     componentWillMount() {
-        this.props.getBlogs();
+        // this.props.getBlogs();
     }
 
     render() {

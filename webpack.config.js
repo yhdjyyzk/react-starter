@@ -21,7 +21,16 @@ module.exports = {
                 ]
             },
             {
-                test: /\.scss$/,
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    // "postcss-loader",
+                ]
+                // loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader!postcss-loader' })
+            },
+            {
+                test: /\.(scss)$/,
                 use: [
                     // "style-loader",
                     MiniCssExtractPlugin.loader,
