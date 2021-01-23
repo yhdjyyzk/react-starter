@@ -3,7 +3,6 @@
     "version": "0.0.1",
     "description": "Start your react project.",
     "main": "index.js",
-    "author": "yuanzhaokang",
     "license": "MIT",
     "scripts": {
         "start": "yarn dev",
