@@ -47,12 +47,12 @@ module.exports = {
         ]
       },
       {
-        test: /\.(scss)$/,
+        test: /\.(less)$/,
         use: [
           styleLoader,
           'css-loader',
           'postcss-loader',
-          'sass-loader'
+          'less-loader'
         ]
       },
       {
