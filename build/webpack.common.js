@@ -1,3 +1,4 @@
+const { name } = require('../package.json');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -23,7 +24,7 @@ module.exports = {
   output: {
     filename: '[name].[hash].js',
     path: path.resolve(__dirname, '../dist'),
-    publicPath: debug ? '/' : '/react-starter/' // 必须配置
+    publicPath: debug ? '/' : '/' + name + '/' // 必须配置
   },
   externals: {},
   module: {
