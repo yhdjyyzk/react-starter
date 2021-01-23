@@ -1,4 +1,4 @@
 export default {
-    count: 0,
-    blogs: []
+  count: 0,
+  blogs: []
 };

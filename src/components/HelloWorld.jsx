@@ -1,19 +1,19 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class HelloWorld extends Component {
-    constructor(props) {
-        super(props)
+  constructor (props) {
+    super(props);
 
-        this.state = {
-            text: ''
-        }
+    this.state = {
+      text: ''
+    };
 
-        this.clickme = this.clickme.bind(this)
-    }
+    this.clickMe = this.clickMe.bind(this);
+  }
 
-    render() {
-        return (
+  render () {
+    return (
             <div>
                 <div>
                     <Link to='/page0'>page0</Link>
@@ -22,17 +22,18 @@ export default class HelloWorld extends Component {
                 </div>
             </div>
             // <div onClick={this.clickme}>hello, {this.props.text}, {this.state.text}</div>
-        )
-    }
+    );
+  }
 
-    clickme() {
-        const text = Math.random()
-        this.setState({
-            text
-        })
-    }
+  clickMe () {
+    const text = Math.random();
+    this.setState({
+      text
+    });
+  }
 }
 
 HelloWorld.defaultProps = {
-    text: 'Mary'
+  text: 'Mary'
 }
+;
