@@ -1,14 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const webpackCommon = require('./webpack.common.js');
 
 module.exports = webpackMerge.merge(webpackCommon, {
   mode: 'production',
-  devtool: 'cheap-module-source-map',
+  devtool: false,
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM'
@@ -35,12 +34,9 @@ module.exports = webpackMerge.merge(webpackCommon, {
     })
   ],
   optimization: {
+    minimize: true, // webpack5 默认使用TerserWebpackPlugin压缩代码
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true
-      }),
+      '...', // 扩展语法，继承默认配置
       new OptimizeCssAssetsPlugin({})
     ],
     splitChunks: {
