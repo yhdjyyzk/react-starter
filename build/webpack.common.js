@@ -2,7 +2,7 @@ const { name } = require('../package.json');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const progressBarPlugin = require('progress-bar-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const webpack = require('webpack');
 
 const debug = process.env.NODE_ENV === 'development';
@@ -22,7 +22,7 @@ console.log(banner);
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: '[name].[hash].js',
+    filename: debug ? '[name].js' : '[name].[hash].js',
     path: path.resolve(__dirname, '../dist'),
     publicPath: debug ? '/' : '/' + name + '/' // 必须配置
   },
@@ -30,7 +30,7 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
+      { test: /\.js$/, enforce: 'pre', loader: 'source-map-loader' },
       {
         test: /\.jsx$/,
         exclude: /node_modules/,
@@ -60,7 +60,7 @@ module.exports = {
         use: {
           loader: 'url-loader',
           options: {
-            name: '[name].[hash:8].[ext]',
+            name: debug ? '[name].[ext]' : '[name].[hash:8].[ext]',
             outputPath: 'images/',
             publicPath: 'images/',
             limit: 10 * 1024
@@ -72,7 +72,7 @@ module.exports = {
         use: {
           loader: 'url-loader',
           options: {
-            name: '[name].[hash:8].[ext]',
+            name: debug ? '[name].[ext]' : '[name].[hash:8].[ext]',
             limit: 5000,
             publicPath: 'fonts/',
             outputPath: 'fonts/'
@@ -85,7 +85,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              name: '[name].[hash:8].[ext]',
+              name: debug ? '[name].[ext]' : '[name].[hash:8].[ext]',
               limit: 10240,
               outputPath: 'media/',
               publicPath: 'media/'
@@ -96,7 +96,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new progressBarPlugin(),
+    new ProgressBarPlugin(),
     new CleanWebpackPlugin(),
     // eslint-disable-next-line new-cap
     // new htmlWebpackPlugin({
@@ -106,7 +106,7 @@ module.exports = {
     //   cdnConfig: [] // cdn 配置
     // }),
     new MiniCssExtractPlugin({
-      filename: '[name].[hash].css',
+      filename: debug ? '[name].css' : '[name].[hash].css',
       chunkFilename: '[id].css'
     }),
     new webpack.BannerPlugin({
