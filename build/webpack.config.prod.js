@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackCommon = require('./webpack.common.js');
 
 module.exports = webpackMerge.merge(webpackCommon, {
@@ -19,7 +19,7 @@ module.exports = webpackMerge.merge(webpackCommon, {
     new webpack.ProgressPlugin(function (percentage, message, ...args) {
       console.info(message + (percentage * 100).toFixed(2) + '%' + '. ' + args.join(','));
     }),
-    new htmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, '../src/index.html'),
       title: 'wind',
@@ -34,7 +34,7 @@ module.exports = webpackMerge.merge(webpackCommon, {
     })
   ],
   optimization: {
-    minimize: true, // webpack5 默认使用TerserWebpackPlugin压缩代码
+    minimize: false, // webpack5 默认使用TerserWebpackPlugin压缩代码
     minimizer: [
       '...', // 扩展语法，继承默认配置
       new OptimizeCssAssetsPlugin({})

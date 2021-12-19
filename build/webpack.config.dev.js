@@ -3,8 +3,10 @@ process.env.NODE_ENV = 'development';
 const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackCommon = require('./webpack.common.js');
+
+const port = 8080;
 
 module.exports = webpackMerge.merge(webpackCommon, {
   mode: 'development',
@@ -12,9 +14,12 @@ module.exports = webpackMerge.merge(webpackCommon, {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProgressPlugin(function (percentage, message, ...args) {
-      console.info(message + (percentage * 100).toFixed(2) + '%' + '. ' + args.join(','));
+      if (percentage > 0.99) {
+        console.log('open: http://localhost:' + port);
+        console.log('*****************************************************');
+      }
     }),
-    new htmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, '../src/index.html'),
       title: '本地调试',
@@ -24,7 +29,7 @@ module.exports = webpackMerge.merge(webpackCommon, {
   devServer: {
     inline: true,
     hot: true,
-    port: 8080,
+    port: port,
     historyApiFallback: {
       index: '/index.html'
     }, // react router要配置

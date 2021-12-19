@@ -113,7 +113,7 @@ module.exports = {
       banner: `
           ${banner}
 
-          Author: yuanzhaokang@github.com
+          Author: yhdjyyzk
           Date: ${new Date()}
         `
     })
