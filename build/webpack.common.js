@@ -20,7 +20,7 @@ __      __.__            .___
 console.log(banner);
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     filename: debug ? '[name].js' : '[name].[hash].js',
     path: path.resolve(__dirname, '../dist'),
@@ -31,6 +31,7 @@ module.exports = {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       { test: /\.js$/, enforce: 'pre', loader: 'source-map-loader' },
+      { test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ },
       {
         test: /\.jsx$/,
         exclude: /node_modules/,
@@ -119,7 +120,7 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: ['.js', '.jsx', 'ts', 'tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '@': path.resolve(__dirname, '../src')
     }
